@@ -78,9 +78,10 @@ Altera o modelo com o id informado.
 
 *Schema*
 
-js
+```js
 {
   "id": 1,
   "nome": "Xbox",
   "icone": "xbox"
 }
+```
