@@ -1,12 +1,19 @@
 package br.com.deluxegames.DeluxeGames.model;
 
-import java.util.Random;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-public record Modelo(Long id, String nome, String icone) {
-    public Modelo (Long id, String nome, String icone) {
-        var key = (id != null)? id : new Random().nextLong();
-        this.id = key;
-        this.nome = nome;
-        this.icone = icone;
-    }
+@Data
+@Entity
+public class Modelo {
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String nome;
+    private String icone;
+
+
 }
