@@ -11,15 +11,15 @@ import br.com.deluxegames.DeluxeGames.repository.EstoqueRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("movimentacao")
+@RequestMapping("estoque")
 public class EstoqueController {
 
     @Autowired
     EstoqueRepository repository;
 
     @PostMapping
-    public Estoque create(@RequestBody @Valid Estoque movimentacao){
-        return repository.save(movimentacao);
+    public Estoque create(@RequestBody @Valid Estoque estoque){
+        return repository.save(estoque);
     }
     
 }

@@ -21,8 +21,8 @@ public class Estoque {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "{movimentacao.descricao.notblank}")
-    @Size(min = 3, message =  "{movimentacao.descricao.size}")
+    @NotBlank(message = "{estoque.produto.notblank}")
+    @Size(min = 4, message =  "{estoque.produto.size}")
     private String produto;
 
     @Positive
@@ -33,7 +33,7 @@ public class Estoque {
 
     private LocalDate data;
 
-    @TipoEstoque(message = "{movimentacao.tipo.tipomovimentacao}")
+    @TipoEstoque(message = "{estoque.tipo.tipoestoque}")
     private String tipo; // ENTRADA | SAIDA
 
     
