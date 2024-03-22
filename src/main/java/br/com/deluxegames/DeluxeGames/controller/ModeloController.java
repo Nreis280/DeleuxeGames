@@ -1,11 +1,10 @@
 package br.com.deluxegames.DeluxeGames.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +21,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.deluxegames.DeluxeGames.model.Modelo;
 import br.com.deluxegames.DeluxeGames.repository.ModeloRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("modelo")
+@Slf4j
 public class ModeloController {
-    
-    Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     ModeloRepository modeloRepository;
@@ -38,11 +37,10 @@ public class ModeloController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     public Modelo create(@RequestBody Modelo modelo) {
         log.info("cadastrando modelo: {}", modelo);
-        modeloRepository.save(modelo);
-        return modelo;
+        return modeloRepository.save(modelo);
     }
 
     @GetMapping("{id}")
@@ -53,38 +51,39 @@ public class ModeloController {
                     .findById(id)
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
+
     }
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Object> destroy(@PathVariable Long id) {
+    @ResponseStatus(NO_CONTENT)
+    public void destroy(@PathVariable Long id) {
         log.info("apagando modelo {}", id);
 
         verificarSeExisteModelo(id);
-
         modeloRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
-
     }
 
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody Modelo modelo){
-        log.info("atualizando modelo id {} para {}", id, modelo);
+    public Modelo update(@PathVariable Long id, @RequestBody Modelo modelo){
+        log.info("atualizando Modelo id {} para {}", id, modelo);
         
         verificarSeExisteModelo(id);
 
         modelo.setId(id);
-        modeloRepository.save(modelo);
-        return ResponseEntity.ok(modelo);
+        return modeloRepository.save(modelo);
+
     }
+
     
     private void verificarSeExisteModelo(Long id) {
         modeloRepository
             .findById(id)
             .orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "modelo não encontrado" )
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo não encontrado" )
             );
     }
+
     
 }
