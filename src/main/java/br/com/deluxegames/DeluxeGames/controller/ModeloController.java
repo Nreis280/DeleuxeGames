@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.deluxegames.DeluxeGames.model.Modelo;
 import br.com.deluxegames.DeluxeGames.repository.ModeloRepository;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -38,7 +39,7 @@ public class ModeloController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Modelo create(@RequestBody Modelo modelo) {
+    public Modelo create(@RequestBody @Valid Modelo modelo) {
         log.info("cadastrando modelo: {}", modelo);
         return modeloRepository.save(modelo);
     }
