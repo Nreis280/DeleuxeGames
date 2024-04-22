@@ -1,11 +1,11 @@
-package br.com.deluxegames.DeluxeGames.model;
+package br.com.fiap.deluxegames.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import br.com.deluxegames.DeluxeGames.validation.TipoMovimentacao;
+import br.com.fiap.deluxegames.validation.TipoMovimentacao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,7 +34,7 @@ public class Movimentacao {
     private String descricao;
 
     @Positive
-    private int qunatidade;
+    private int quantidade;
 
     @Positive
     private BigDecimal valor;

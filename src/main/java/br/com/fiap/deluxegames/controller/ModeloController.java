@@ -1,4 +1,4 @@
-package br.com.deluxegames.DeluxeGames.controller;
+package br.com.fiap.deluxegames.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.deluxegames.DeluxeGames.model.Modelo;
-import br.com.deluxegames.DeluxeGames.repository.ModeloRepository;
+import br.com.fiap.deluxegames.model.Modelo;
+import br.com.fiap.deluxegames.repository.ModeloRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -68,7 +68,7 @@ public class ModeloController {
 
     @PutMapping("{id}")
     public Modelo update(@PathVariable Long id, @RequestBody Modelo modelo){
-        log.info("atualizando Modelo id {} para {}", id, modelo);
+        log.info("atualizando modelo id {} para {}", id, modelo);
         
         verificarSeExisteModelo(id);
 
@@ -82,9 +82,9 @@ public class ModeloController {
         modeloRepository
             .findById(id)
             .orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Modelo não encontrado" )
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "modelo não encontrado" )
             );
     }
 
-    
+
 }

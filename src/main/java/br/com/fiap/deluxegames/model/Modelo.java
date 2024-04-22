@@ -1,4 +1,4 @@
-package br.com.deluxegames.DeluxeGames.model;
+package br.com.fiap.deluxegames.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,10 +19,12 @@ public class Modelo {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank
+
+    @NotBlank(message = "{modelo.nome.notblank}")
     private String nome;
-    @NotBlank
+
     private String icone;
+
 
 
 }

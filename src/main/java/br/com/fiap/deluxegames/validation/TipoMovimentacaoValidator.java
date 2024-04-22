@@ -1,4 +1,4 @@
-package br.com.deluxegames.DeluxeGames.validation;
+package br.com.fiap.deluxegames.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

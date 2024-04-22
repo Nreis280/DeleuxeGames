@@ -1,4 +1,4 @@
-package br.com.deluxegames.DeluxeGames.validation;
+package br.com.fiap.deluxegames.validation;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
@@ -30,4 +30,6 @@ public class ValidationErrorHandler {
             .toList();
 
     }
+
+    
 }

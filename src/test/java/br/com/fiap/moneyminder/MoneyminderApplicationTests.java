@@ -1,10 +1,10 @@
-package br.com.deluxegames.DeluxeGames;
+package br.com.fiap.moneyminder;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DeluxeGamesApplicationTests {
+class MoneyminderApplicationTests {
 
 	@Test
 	void contextLoads() {

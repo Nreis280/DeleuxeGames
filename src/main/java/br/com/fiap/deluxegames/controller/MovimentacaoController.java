@@ -1,4 +1,4 @@
-package br.com.deluxegames.DeluxeGames.controller;
+package br.com.fiap.deluxegames.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.deluxegames.DeluxeGames.model.Movimentacao;
-import br.com.deluxegames.DeluxeGames.repository.MovimentacaoRepository;
+import br.com.fiap.deluxegames.model.Movimentacao;
+import br.com.fiap.deluxegames.repository.MovimentacaoRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 

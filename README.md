@@ -1,87 +1,87 @@
-# DeleuxeGames 🕹️
+# MoneyMinder
 
 ## Requisitos
 
-- [ ] CRUD Estoque (Entrada e saida de produtos)
-- [ ] CRUD Modelos (modelos de videoGames)
-- [ ] Listagem de Filiais
+- [x] CRUD Categorias
+- [ ] CRUD Movimentações
+- [ ] Dashboard
 - [ ] Autenticação
 
 ## Endpoints
 
-### modelos
+### Categorias
 
-`GET` /modelo
+`GET` /categoria
 
-Lista todos os modelos cadastrados no sistema.
+Lista todas as categorias cadastradas no sistema.
 
-*códigos de status*
-
-200 sucesso
+`200` sucesso
 
 ---
 
-`GET` /modelo/{id}
+`GET` /categoria/{id}
 
-Retorna os detalhes de um modelo com o id informado.
+Retorna os detalhes de uma categoria com o `id` informado.
 
-*códigos de status*
+**códigos de status**
 
-200 sucesso
-404 id não encontrado
+`200` sucesso
+`404` id não encontrado
+
+---
+`POST` /categoria
+
+Cadastrar uma nova categoria.
+
+| campo | tipo | obrigatório | descrição
+|-------|------|:-------------:|-----------
+|nome|string|✅|Um nome curto para identificar a categoria
+|icone|string|❌|O nome do ícone conforme biblioteca material design
+
+
+
+**códigos de status**
+
+`201` criado com sucesso
+`400` validação falhou
 
 ---
 
-`POST` /modelo
+`DELETE` /categoria/{id} 
 
-Cadastrar um novo modelo.
+Apaga a catagoria com o `id` informado.
 
-| campo | tipo | obrigatório | descrição|
-| :----------:|:-------:|:------------:|:-------------:
-|nome|string|✅|Nome do modelo
-|icone|string|❌|O nome do ícone conforme biblioteca do material design
+**códigos de status**
 
-*códigos de status*
-
-201 criado com sucesso
-400 validação falhou
+`204` apagado com sucesso
+`404` id não encontrado
 
 ---
 
-`DELETE` /modelo/{id}
+`PUT` /categoria/{id} 
 
-Apaga o modelo com o id informado.
+Altera a catagoria com o `id` informado.
 
-*códigos de status*
+| campo | tipo | obrigatório | descrição
+|-------|------|:-------------:|-----------
+|nome|string|✅|Novo nome curto para identificar a categoria
+|icone|string|✅|Novo nome do ícone conforme biblioteca material design
 
-204 apagado com sucesso
-404 id não encontrado
+**códigos de status**
 
----
-
-`PUT` /modelo/{id}
-
-Altera o modelo com o id informado.
-
-| campo | tipo | obrigatório | descrição|
-| :----------:|:-------:|:------------:|:-------------:
-|nome|string|✅|Novo nome do modelo
-|icone|string|✅|Novo nome do ícone conforme biblioteca do material design
-
-*códigos de status*
-
-200 sucesso
-404 id não encontrado
-400 validação falhou
+`200` sucesso
+`404` id não encontrado
+`400` validação falhou
 
 ---
 
-*Schema*
+**Schema**
 
 ```js
 {
-  "id": 1,
-  "nome": "Xbox",
-  "icone": "xbox"
+    "id": 1,
+    "nome": "Alimentação",
+    "icone": "fast-food"
 }
+
 ```
