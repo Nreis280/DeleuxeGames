@@ -6,6 +6,9 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,24 +24,37 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.deluxegames.model.Modelo;
 import br.com.fiap.deluxegames.repository.ModeloRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("modelo")
 @Slf4j
+@CacheConfig(cacheNames = "modelos")
+@Tag(name = "modelos", description = "Endpoint relacionados aos modelos de Video games")
 public class ModeloController {
 
     @Autowired
     ModeloRepository modeloRepository;
 
     @GetMapping
+    @Cacheable
+    @Operation(summary = "Lista todos os modelos cadastrados no sistema.", description = "Endpoint que retorna um array de objetos do tipo modelos com todos os modelos do usuário atual")
     public List<Modelo> index() {
         return modeloRepository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
+    @CacheEvict(allEntries = true)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "400", description = "Erro de validação do Modelo"),
+            @ApiResponse(responseCode = "201", description = "Modelo cadastrado com sucesso")
+    })
     public Modelo create(@RequestBody @Valid Modelo modelo) {
         log.info("cadastrando modelo: {}", modelo);
         return modeloRepository.save(modelo);
@@ -58,6 +74,7 @@ public class ModeloController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
+    @CacheEvict(allEntries = true)
     public void destroy(@PathVariable Long id) {
         log.info("apagando modelo {}", id);
 
